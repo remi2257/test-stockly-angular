@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="img-section">
+    <div class="nav">
+      <button
+        mat-icon-button
+        *ngIf="canGoPrevious()"
+        [routerLink]="['/photo', id - 1]"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <img [src]="photo.src" alt="" />
+      <button
+        mat-icon-button
+        *ngIf="canGoNext()"
+        [routerLink]="['/photo', id + 1]"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+    <div class="bottom">
+      <div class="count">
+        <span class="bold">{{ id }} </span>of
+        <span class="bold">{{ servicePhoto.getCountImages() }}</span>
+      </div>
+      <div class="album">
+        in: <span class="bold">Road to {{ servicePhoto.getAlbumName() }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="comment-section">
+    <div class="post-infos">
+      <div class="post-by">
+        Posted by :
+        <img
+          [src]="servicePhoto.getUserInfos(photo.postedBy).avatar"
+          alt=""
+        /><span class="bold">{{
+          servicePhoto.getUserInfos(photo.postedBy).name
+        }}</span>
+      </div>
+      <div class="post-on">Posted on : {{ photo.postedAt * 1000 | date }}</div>
+      <div class="description">{{ photo.description }}</div>
+    </div>
+    <hr />
+    <div class="comments"></div>
+    <div class="add-comment"></div>
+    <hr />
+  </div>
+</div>
